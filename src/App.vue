@@ -9,8 +9,8 @@
           font-src="/assets/UKNumberPlate_Regular.json"
           align="center"
           :size="1.5"
-          :height=".01"
-          :position="{ x: 0, y: 0, z: .01 }"
+          :height=".1"
+          :position="{ x: 0, y: 0, z: .08 }"
       >
         <BasicMaterial color="#000000"/>
       </Text>
@@ -43,6 +43,8 @@ onMounted(() => {
 // Set properties to configure:
 
 </script>
+
+
 
 <style>
 body {
