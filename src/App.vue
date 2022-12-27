@@ -4,6 +4,7 @@ import { Camera, AmbientLight, Renderer, Scene } from 'troisjs'
 import { Text } from 'troisjs'
 
 const plateNum = ref('default')
+const plateType = 'A';
 
 const rendererC = ref()
 //const meshC = ref()
@@ -28,6 +29,15 @@ onMounted(() => {
 
       <input autofocus placeholder='plate number' v-model="plateNum" maxlength="8">
 
+      <!--<div>Selected: {{ plateType }}</div>
+
+      <select v-model="plateType">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>-->
+
       <Text ref = "licenseNum"
           :text = plateNum
           font-src="/assets/UKNumberPlate_Regular.json"
@@ -40,7 +50,7 @@ onMounted(() => {
       </Text>
 
       <GltfModel
-          src="/assets/halford_standard.gltf"
+          src="/assets/hex_halford.gltf"
           @load="onReady"
           @progress="onProgress"
           @error="onError"
