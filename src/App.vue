@@ -53,6 +53,17 @@ onMounted(() => {
         <BasicMaterial color="#000000"/>
       </Text>
 
+      <Text
+            text = "halfords B98 0DE"
+            font-src="/assets/UKNumberPlate_Regular.json"
+            align="center"
+            :size=".15"
+            :height=".01"
+            :position="{ x: 0, y: -.95, z: .055 }"
+      >
+        <BasicMaterial color="#000000"/>
+      </Text>
+
       <div v-if="plateType=='standard'">
         <GltfModel
             src="/assets/standard_halford.gltf"
