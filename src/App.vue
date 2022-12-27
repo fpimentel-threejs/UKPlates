@@ -4,7 +4,12 @@ import { Camera, AmbientLight, Renderer, Scene } from 'troisjs'
 import { Text } from 'troisjs'
 
 const plateNum = ref('default')
-const plateType = 'A';
+const plateType = ref('standard')
+
+const plateTypes = {
+  standard: ref(true),
+  hex: ref(false)
+}
 
 const rendererC = ref()
 //const meshC = ref()
@@ -29,14 +34,13 @@ onMounted(() => {
 
       <input autofocus placeholder='plate number' v-model="plateNum" maxlength="8">
 
-      <!--<div>Selected: {{ plateType }}</div>
+      <div class = 'plateType'>Selected: {{plateType}} </div>
 
-      <select v-model="plateType">
+      <select class = 'plateSelect' v-model="plateType">
         <option disabled value="">Please select one</option>
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-      </select>-->
+        <option>standard</option>
+        <option>hex</option>
+      </select>
 
       <Text ref = "licenseNum"
           :text = plateNum
@@ -49,12 +53,23 @@ onMounted(() => {
         <BasicMaterial color="#000000"/>
       </Text>
 
+      <div v-if="plateType=='standard'">
+        <GltfModel
+            src="/assets/standard_halford.gltf"
+            @load="onReady"
+            @progress="onProgress"
+            @error="onError"
+        />
+      </div>
+
+      <div v-if="plateType=='hex'">
       <GltfModel
           src="/assets/hex_halford.gltf"
           @load="onReady"
           @progress="onProgress"
           @error="onError"
       />
+      </div>
 
     </Scene>
   </Renderer>
@@ -77,6 +92,18 @@ h1{
 input{
   position: absolute;
   top: 100px;
+  left: 100px;
+}
+
+.plateType{
+  position: absolute;
+  top: 400px;
+  left: 100px;
+}
+
+.plateSelect{
+  position: absolute;
+  top: 450px;
   left: 100px;
 }
 </style>
