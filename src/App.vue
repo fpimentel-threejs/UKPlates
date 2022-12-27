@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Camera, AmbientLight, Renderer, Scene } from 'troisjs'
+import { Camera, AmbientLight, Renderer, Scene, Circle } from 'troisjs'
 import { Text } from 'troisjs'
 
 const plateNum = ref('default')
@@ -12,13 +12,10 @@ const plateTypes = {
 }
 
 const rendererC = ref()
-//const meshC = ref()
 onMounted(() => {
 
   const renderer = rendererC.value
-  //const mesh = meshC.value.mesh
   renderer.onBeforeRender(() => {
-    //console.log(this.$refs.licenseNum);
     //mesh.rotation.x += 0.01
   })
 })
@@ -28,7 +25,9 @@ onMounted(() => {
   <Renderer ref="rendererC" antialias :orbit-ctrl="{ enableDamping: true }" resize="window">
     <Camera :position="{ z: 10 }" />
     <Scene :background="0xffffff">
-      <AmbientLight :position="{ y: 0, z: 50 }" :intensity="1.5"/>
+      <AmbientLight :position="{ y: 0, z: 50 }" :intensity="1"/>
+      <PointLight :position="{ y: 0, z: 5 }" color="#ffffff" :intensity=".5" />
+      <PointLight :position="{ y: 0, z: -5 }" color="#ffffff" :intensity=".5" />
 
       <h1>Enter your license plate number:</h1>
 
@@ -41,6 +40,15 @@ onMounted(() => {
         <option>standard</option>
         <option>hex</option>
       </select>
+
+      <!--<Circle
+          ref="circle"
+          :rotation="{ x: (Math.PI /180)*270 }"
+          :position="{ y: -2.5}"
+          :scale="{x: 100, y: 100}"
+      >
+        <LambertMaterial color="green" />
+      </Circle>-->
 
       <Text ref = "licenseNum"
           :text = plateNum
@@ -70,6 +78,7 @@ onMounted(() => {
             @load="onReady"
             @progress="onProgress"
             @error="onError"
+            :cashshadow="true"
         />
       </div>
 
@@ -79,6 +88,7 @@ onMounted(() => {
           @load="onReady"
           @progress="onProgress"
           @error="onError"
+          :cashshadow="true"
       />
       </div>
 
