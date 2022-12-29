@@ -15,7 +15,6 @@ onMounted(() => {
 
   const renderer = rendererC.value
   renderer.onBeforeRender(() => {
-    //mesh.rotation.x += 0.01
   })
 })
 </script>
