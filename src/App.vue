@@ -8,6 +8,7 @@ let plateNumTop = ref('defa')
 let plateNumBottom = ref('ult')
 const plateType = ref('standard')
 const electricSwitch = ref(false)
+const borderSwitch = ref(false)
 const motorcycleSwitch = ref(false)
 
 const rendererC = ref()
@@ -45,6 +46,10 @@ onMounted(() => {
 
         <input class = "switch" v-model="electricSwitch" type="checkbox" name="check" />
 
+        <div class = 'bordertext'>Add a border?</div>
+
+        <input style="top: 85%" class = "switch" v-model="borderSwitch" type="checkbox" name="check" />
+
         <div class = 'plateType'>Select your plate type: </div>
 
         <Text ref = "licenseNum"
@@ -52,14 +57,14 @@ onMounted(() => {
               font-src="/assets/UKNumberPlate_Regular.json"
               align="center"
               :size="1.5"
-              :height=".1"
-              :position="{ x: 0, y: 0, z: .08 }"
+              :height=".2"
+              :position="{ x: 0, y: 0, z: .15 }"
         >
           <BasicMaterial color="#000000"/>
         </Text>
 
         <Text
-            text = "halfords B98 0DE"
+            text = "UTOPIA PLATES DH1 2XJ"
             font-src="/assets/UKNumberPlate_Regular.json"
             align="center"
             :size=".15"
@@ -69,20 +74,54 @@ onMounted(() => {
           <BasicMaterial color="#000000"/>
         </Text>
 
-        <div v-if="!electricSwitch">
+        <Text
+            text = "AR BSAU 145E"
+            font-src="/assets/UKNumberPlate_Regular.json"
+            align="center"
+            :size=".15"
+            :height=".01"
+            :position="{ x: 4.15, y: -.95, z: .06 }"
+        >
+          <BasicMaterial color="#000000"/>
+        </Text>
+
+        <div v-if="!electricSwitch && !borderSwitch">
 
         <GltfModel
-            src="/assets/standard_halford.gltf"
+            src="/assets/standard_plate.gltf"
             @load="onReady"
             @progress="onProgress"
             @error="onError"
         />
+
+
         </div>
 
-      <div v-if="electricSwitch">
+        <div v-if="!electricSwitch && borderSwitch">
+
+          <GltfModel
+              src="/assets/standard_bordered_plate.gltf"
+              @load="onReady"
+              @progress="onProgress"
+              @error="onError"
+          />
+        </div>
+
+        <div v-if="electricSwitch && borderSwitch">
+
+          <GltfModel
+              src="/assets/electric_bordered_plate.gltf"
+              @load="onReady"
+              @progress="onProgress"
+              @error="onError"
+          />
+
+        </div>
+
+      <div v-if="electricSwitch && !borderSwitch">
 
         <GltfModel
-            src="/assets/elec_halford.gltf"
+            src="/assets/electric_plate.gltf"
             @load="onReady"
             @progress="onProgress"
             @error="onError"
@@ -105,8 +144,8 @@ onMounted(() => {
               font-src="/assets/UKNumberPlate_Regular.json"
               align="center"
               :size="1.5"
-              :height=".1"
-              :position="{ x: 0, y: 0, z: .08 }"
+              :height=".2"
+              :position="{ x: 0, y: 0, z: .15 }"
         >
           <BasicMaterial color="#000000"/>
         </Text>
@@ -122,8 +161,19 @@ onMounted(() => {
           <BasicMaterial color="#000000"/>
         </Text>
 
+        <Text
+            text = "AR BSAU 145E"
+            font-src="/assets/UKNumberPlate_Regular.json"
+            align="center"
+            :size=".15"
+            :height=".01"
+            :position="{ x: 4.15, y: -.95, z: .06 }"
+        >
+          <BasicMaterial color="#000000"/>
+        </Text>
+
       <GltfModel
-          src="/assets/hex_halford.gltf"
+          src="/assets/hex_plate.gltf"
           @load="onReady"
           @progress="onProgress"
           @error="onError"
@@ -140,6 +190,10 @@ onMounted(() => {
 
         <input class = "switch" v-model="motorcycleSwitch" type="checkbox" name="check" />
 
+        <div class = 'bordertext'>Add a border?</div>
+
+        <input style="top: 85%" class = "switch" v-model="borderSwitch" type="checkbox" name="check" />
+
         <div class = 'plateType'>Select your plate type: </div>
 
         <Text ref = "licenseNum"
@@ -147,8 +201,8 @@ onMounted(() => {
               font-src="/assets/UKNumberPlate_Regular.json"
               align="center"
               :size="1.5"
-              :height=".1"
-              :position="{ x: 0, y: 1, z: .08 }"
+              :height=".2"
+              :position="{ x: 0, y: 1, z: .1 }"
         >
 
           <BasicMaterial color="#000000"/>
@@ -160,8 +214,8 @@ onMounted(() => {
               font-src="/assets/UKNumberPlate_Regular.json"
               align="center"
               :size="1.5"
-              :height=".1"
-              :position="{ x: 0, y: -.75, z: .08 }"
+              :height=".2"
+              :position="{ x: 0, y: -.75, z: .1 }"
         >
           <BasicMaterial color="#000000"/>
         </Text>
@@ -172,27 +226,58 @@ onMounted(() => {
             align="center"
             :size=".15"
             :height=".01"
-            :position="{ x: 0, y: -2.3, z: .055 }"
+            :position="{ x: 0, y: -2.35, z: .055 }"
+        >
+          <BasicMaterial color="#000000"/>
+        </Text>
+
+        <Text
+            text = "AR BSAU 145E"
+            font-src="/assets/UKNumberPlate_Regular.json"
+            align="center"
+            :size=".15"
+            :height=".01"
+            :position="{ x: 2.35, y: -2.35, z: .06 }"
         >
           <BasicMaterial color="#000000"/>
         </Text>
 
         <div class = 'switchtext'>Is the vehicle a motorcycle?</div>
 
-        <div v-if="!motorcycleSwitch">
+        <div v-if="!motorcycleSwitch && !borderSwitch">
+
+          <GltfModel
+            src="/assets/square_plate.gltf"
+            @load="onReady"
+            @progress="onProgress"
+            @error="onError"
+          />
+        </div>
+
+        <div v-if="!motorcycleSwitch && borderSwitch">
+
+          <GltfModel
+              src="/assets/square_bordered_plate.gltf"
+              @load="onReady"
+              @progress="onProgress"
+              @error="onError"
+          />
+        </div>
+
+      <div v-if="motorcycleSwitch && !borderSwitch">
 
         <GltfModel
-            src="/assets/square_halford.gltf"
+            src="/assets/motorcycle_plate.gltf"
             @load="onReady"
             @progress="onProgress"
             @error="onError"
         />
       </div>
 
-      <div v-if="motorcycleSwitch">
+      <div v-if="motorcycleSwitch && borderSwitch">
 
         <GltfModel
-            src="/assets/moto_halford.gltf"
+            src="/assets/motorcycle_bordered_plate.gltf"
             @load="onReady"
             @progress="onProgress"
             @error="onError"
@@ -207,6 +292,10 @@ onMounted(() => {
 
         <input autofocus placeholder='plate number' v-model="plateNum" maxlength="8">
 
+        <div class = 'bordertext'>Add a border?</div>
+
+        <input style="top: 85%" class = "switch" v-model="borderSwitch" type="checkbox" name="check" />
+
         <div class = 'plateType'>Select your plate type: </div>
 
         <Text ref = "licenseNum"
@@ -214,8 +303,8 @@ onMounted(() => {
               font-src="/assets/UKNumberPlate_Regular.json"
               align="center"
               :size="1.5"
-              :height=".1"
-              :position="{ x: 0, y: 0, z: .08 }"
+              :height=".2"
+              :position="{ x: 0, y: 0, z: .15 }"
         >
 
           <BasicMaterial color="#000000"/>
@@ -228,17 +317,40 @@ onMounted(() => {
             align="center"
             :size=".15"
             :height=".01"
-            :position="{ x: 0, y: -1.3, z: .055 }"
+            :position="{ x: 0, y: -1.33, z: .055 }"
         >
           <BasicMaterial color="#000000"/>
         </Text>
 
+        <Text
+            text = "AR BSAU 145E"
+            font-src="/assets/UKNumberPlate_Regular.json"
+            align="center"
+            :size=".15"
+            :height=".01"
+            :position="{ x: 4.2, y: -1.33, z: .06 }"
+        >
+          <BasicMaterial color="#000000"/>
+
+        </Text>
+
+        <div v-if="!borderSwitch">
           <GltfModel
-              src="/assets/oversized_halford.gltf"
+              src="/assets/oversized_plate.gltf"
               @load="onReady"
               @progress="onProgress"
               @error="onError"
           />
+        </div>
+
+        <div v-if="borderSwitch">
+          <GltfModel
+              src="/assets/oversized_bordered_plate.gltf"
+              @load="onReady"
+              @progress="onProgress"
+              @error="onError"
+          />
+        </div>
 
       </div>
 
@@ -292,5 +404,11 @@ input{
   position: absolute;
   left: 60%;
   top: 80%;
+}
+
+.bordertext{
+  position: absolute;
+  left: 60%;
+  top: 85%;
 }
 </style>
