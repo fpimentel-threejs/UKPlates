@@ -36,7 +36,7 @@ onMounted(() => {
         <option>oversized</option>
       </select>
 
-      <div v-if="plateType=='standard'">
+      <div v-if="plateType==='standard'">
 
         <h1>Enter your license plate number:</h1>
 
@@ -131,7 +131,7 @@ onMounted(() => {
       </div>
 
 
-      <div v-if="plateType=='hex'">
+      <div v-if="plateType==='hex'">
 
         <h1>Enter your license plate number:</h1>
 
@@ -180,7 +180,7 @@ onMounted(() => {
       />
       </div>
 
-      <div v-if="plateType=='square'">
+      <div v-if="plateType==='square'">
 
         <h1>Enter your license plate number:</h1>
 
@@ -286,7 +286,7 @@ onMounted(() => {
 
       </div>
 
-      <div v-if="plateType=='oversized'">
+      <div v-if="plateType==='oversized'">
 
         <h1>Enter your license plate number:</h1>
 
